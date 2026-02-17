@@ -1,0 +1,10 @@
+services:
+  lualatex:
+    container_name: lualatex
+    build:
+      dockerfile: Dockerfile
+      context: .
+    volumes:
+      - .:/workspace
+    tty: true
+    stdin_open: true

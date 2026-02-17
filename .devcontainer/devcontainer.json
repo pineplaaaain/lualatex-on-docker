@@ -1,0 +1,63 @@
+{
+  "name": "LuaLaTeX Development Environment",
+  "dockerComposeFile": [
+    "../docker-compose.yml",
+    "docker-compose.yml"
+  ],
+  "service": "lualatex",
+  "workspaceFolder": "/workspace",
+  "remoteUser": "vscode",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "james-yu.latex-workshop"
+      ],
+      "settings": {
+        "[tex]": {
+          "editor.suggest.snippetsPreventQuickSuggestions": false,
+          "editor.tabSize": 2,
+          "editor.formatOnSave": true
+        },
+        "[latex]": {
+          "editor.suggest.snippetsPreventQuickSuggestions": false,
+          "editor.wordSeparators": "./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}`~?．。，、（）「」［］｛｝《》てにをはがのともへでや",
+          "editor.tabSize": 2,
+          "editor.formatOnSave": true
+        },
+        "[bibtex]": {
+          "editor.tabSize": 2
+        },
+        "latex-workshop.intellisense.package.enabled": true,
+        "latex-workshop.latex.clean.fileTypes": [
+          "*.aux", "*.bbl", "*.blg", "*.idx", "*.ind", "*.lof", "*.lot",
+          "*.out", "*.toc", "*.acn", "*.acr", "*.alg", "*.glg", "*.glo",
+          "*.gls", "*.ist", "*.fls", "*.log", "*.fdb_latexmk", "*.snm",
+          "*.nav", "*.dvi", "*.synctex.gz"
+        ],
+        "latex-workshop.latex.outDir": "../out/",
+        "latex-workshop.latex.tools": [
+          {
+            "name": "lualatex",
+            "command": "lualatex",
+            "args": [
+              "-output-directory=../out",
+              "-synctex=1",
+              "-interaction=nonstopmode",
+              "-file-line-error",
+              "%DOCFILE%.tex"
+            ]
+          }
+        ],
+        "latex-workshop.latex.recipes": [
+          {
+            "name": "lualatex",
+            "tools": ["lualatex", "lualatex"]
+          }
+        ],
+        "latex-workshop.view.pdf.viewer": "tab",
+        "latex-workshop.latex.autoClean.run": "onBuilt",
+        "files.autoSave": "onFocusChange"
+      }
+    }
+  }
+}
