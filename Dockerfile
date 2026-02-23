@@ -4,19 +4,11 @@ ENV LANG=ja_JP.UTF-8
 ENV TZ=Asia/Tokyo
 ENV DEBIAN_FRONTEND=noninteractive
 
-# 基本パッケージのインストール
 RUN apt-get update && apt-get install -y --no-install-recommends \
     locales \
     tzdata \
+    git \
     make \
-    && locale-gen ja_JP.UTF-8 \
-    && localedef -f UTF-8 -i ja_JP ja_JP \
-    && apt-get autoremove -y \
-    && apt-get clean -y \
-    && rm -rf /var/lib/apt/lists/*
-
-# LaTeX関連パッケージのインストール
-RUN apt-get update && apt-get install -y --no-install-recommends \
     texlive-lang-japanese \
     texlive-luatex \
     texlive-latex-recommended \
@@ -26,6 +18,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     biber \
     fonts-lmodern \
     latexmk \
+    && locale-gen ja_JP.UTF-8 \
+    && localedef -f UTF-8 -i ja_JP ja_JP \
     && apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*

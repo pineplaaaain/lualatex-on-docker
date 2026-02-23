@@ -44,11 +44,22 @@
               "-synctex=1",
               "-interaction=nonstopmode",
               "-file-line-error",
-              "%DOCFILE%.tex"
+              "%DOC%.tex"
+            ]
+          },
+          {
+            "name": "biber",
+            "command": "biber",
+            "args": [
+              "../out/%DOCFILE%"
             ]
           }
         ],
         "latex-workshop.latex.recipes": [
+          {
+            "name": "lualatex (with biber)",
+            "tools": ["lualatex", "biber", "lualatex", "lualatex"]
+          },
           {
             "name": "lualatex",
             "tools": ["lualatex", "lualatex"]
