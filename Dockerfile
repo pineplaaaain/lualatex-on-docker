@@ -18,6 +18,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     biber \
     fonts-lmodern \
     latexmk \
+    libyaml-tiny-perl \
+    libfile-homedir-perl \
     && locale-gen ja_JP.UTF-8 \
     && localedef -f UTF-8 -i ja_JP ja_JP \
     && apt-get autoremove -y \
