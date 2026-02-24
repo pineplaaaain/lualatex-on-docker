@@ -1,7 +1,7 @@
 .PHONY: build clean help
 
 # デフォルトのTeXファイル
-TEX_FILE ?= sample.tex
+TEX_FILE ?= template.tex
 PDF_FILE = $(TEX_FILE:.tex=.pdf)
 
 help: ## このヘルプを表示
@@ -12,26 +12,13 @@ build-slim: ## LaTeX文書をビルド
 	cd src && lualatex -output-directory=../out -synctex=1 -interaction=nonstopmode -file-line-error $(TEX_FILE)
 	cd src && lualatex -output-directory=../out -synctex=1 -interaction=nonstopmode -file-line-error $(TEX_FILE)
 
-build: ## 参考文献付きでビルド
+build: ## 参考文献付きでビルド (latexmk)
 	mkdir -p out
-	cd src && lualatex -output-directory=../out -synctex=1 -interaction=nonstopmode -file-line-error $(TEX_FILE)
-	cd src && biber --output-directory=../out $(basename $(TEX_FILE))
-	cd src && lualatex -output-directory=../out -synctex=1 -interaction=nonstopmode -file-line-error $(TEX_FILE)
-	cd src && lualatex -output-directory=../out -synctex=1 -interaction=nonstopmode -file-line-error $(TEX_FILE)
+	cd src && latexmk -output-directory=../out $(TEX_FILE)
 
 clean: ## 生成ファイルを削除
-	rm -f *.aux *.bbl *.blg *.fdb_latexmk *.fls *.log *.out *.synctex.gz *.toc *.dvi
 	rm -rf out/
 
 watch: ## ファイル変更を監視してビルド
 	mkdir -p out
-	cd src && latexmk -lualatex -pvc -synctex=1 -interaction=nonstopmode -output-directory=../out $(TEX_FILE)
-
-docker-build: ## Dockerイメージをビルド
-	docker-compose build
-
-docker-up: ## Dockerコンテナを起動
-	docker-compose up -d
-
-docker-down: ## Dockerコンテナを停止
-	docker-compose down
+	cd src && latexmk -pvc -output-directory=../out $(TEX_FILE)
