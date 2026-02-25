@@ -1,0 +1,14 @@
+\begin{tikzpicture}
+  \begin{axis}[
+    xlabel={$x$},
+    ylabel={$y$},
+    grid=major,
+    width=10cm,
+    height=7cm,
+    legend pos=north east
+  ]
+  \addplot[blue, thick, domain=-3:3, samples=100] {x^2};
+  \addplot[red, thick, domain=-3:3, samples=100] {2*x+1};
+  \legend{$y=x^2$, $y=2x+1$}
+  \end{axis}
+\end{tikzpicture}

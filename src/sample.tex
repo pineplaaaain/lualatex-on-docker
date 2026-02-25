@@ -1,0 +1,105 @@
+\documentclass{jlreq}
+
+% 日本語フォント
+\usepackage[haranoaji]{luatexja-preset}
+
+% abstract環境（jlreq デフォルトで定義済み）
+
+% 基本パッケージ
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+
+% 数式
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+
+% 図表
+\usepackage{graphicx}
+\usepackage{svg}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta,positioning,shapes}
+
+% 参考文献
+\usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
+\addbibresource{references.bib}
+
+% リンク・URL
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=red,urlcolor=blue]{hyperref}
+\usepackage{url}
+
+% その他
+\usepackage{enumerate}
+\usepackage{enumitem}
+% caption: ltjsbookと競合するため読み込み不要
+%\usepackage{caption}
+%\usepackage{subcaption}
+\usepackage{listings}
+\usepackage{xcolor}
+
+% ページ設定
+\geometry{top=25mm, bottom=25mm, left=25mm, right=25mm, footskip=10mm, headheight=17pt}
+
+% 行間設定
+\onehalfspacing
+
+% ヘッダー・フッター
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\leftmark}
+\fancyfoot[C]{\thepage}
+
+% コードリスティング設定
+\lstset{
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue},
+  commentstyle=\color{green!60!black},
+  stringstyle=\color{red},
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  frame=single,
+  breaklines=true,
+  showstringspaces=false
+}
+
+% 定理環境
+\newtheorem{theorem}{定理}
+\newtheorem{lemma}{補題}
+\newtheorem{definition}{定義}
+\newtheorem{proposition}{命題}
+
+% タイトル情報
+\title{タイトル}
+\author{著者名}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+  概要を記す.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+% 章ごとのファイルを読み込む
+\input{chapters/introduction}
+\input{chapters/hoge}
+\input{chapters/fuga}
+\input{chapters/conclusion}
+
+\section*{謝辞}
+本研究の議論にあたり有益な助言をいただいた関係者各位に感謝申し上げます.
+
+\nocite{*}
+\printbibliography[title=参考文献]
+
+\end{document}

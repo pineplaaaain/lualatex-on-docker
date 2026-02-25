@@ -1,0 +1,21 @@
+\begin{tikzpicture}[scale=1.0]
+  % 座標軸
+  \draw[->] (-0.5,0) -- (5,0) node[right] {$x$};
+  \draw[->] (0,-0.5) -- (0,4) node[above] {$y$};
+  
+  % グリッド
+  \draw[gray!30, thin] (0,0) grid (4.5,3.5);
+  
+  % データポイント
+  \fill[blue] (1,1) circle (3pt);
+  \fill[blue] (2,1.8) circle (3pt);
+  \fill[blue] (3,2.5) circle (3pt);
+  \fill[blue] (4,3.2) circle (3pt);
+  
+  % 近似直線
+  \draw[red, thick, dashed] (0.5,0.5) -- (4.5,3.5);
+  
+  % ラベル
+  \node[blue] at (4.2,3.5) {データ};
+  \node[red] at (3.5,2.5) {近似線};
+\end{tikzpicture}
